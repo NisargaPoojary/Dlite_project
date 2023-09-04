@@ -59,11 +59,11 @@ void orderFood(struct Customer *customer) {
         printf("Enter quantity: ");
         scanf("%d", &customer->quantity);
         printf("Enter customer name: ");
-        scanf(" %[^\n]", customer->name);
+        scanf(" %s", customer->name);
         printf("Enter customer address: ");
-        scanf(" %[^\n]", customer->address);
+        scanf(" %s", customer->address);
         printf("Enter customer phone number: ");
-        scanf(" %[^\n]", customer->phone);
+        scanf(" %s", customer->phone);
     } else {
         printf("Invalid choice.\n");
     }
@@ -75,17 +75,17 @@ void orderFood(struct Customer *customer) {
 void addEmployee(struct Employee *employees, int *numEmployees) {
 	cls();
     printf("Enter employee name: ");
-    scanf(" %[^\n]", employees[*numEmployees].name);
+    scanf(" %s", employees[*numEmployees].name);
     printf("Enter employee address: ");
-    scanf(" %[^\n]", employees[*numEmployees].address);
+    scanf(" %s", employees[*numEmployees].address);
     printf("Enter employee phone number: ");
-    scanf(" %[^\n]", employees[*numEmployees].phone);
+    scanf(" %s", employees[*numEmployees].phone);
     printf("Enter employee department: ");
-    scanf(" %[^\n]", employees[*numEmployees].department);
+    scanf(" %s", employees[*numEmployees].department);
     printf("Enter employee date of birth: ");
-    scanf(" %[^\n]", employees[*numEmployees].dob);
+    scanf(" %s", employees[*numEmployees].dob);
     printf("Enter employee joining date: ");
-    scanf(" %[^\n]", employees[*numEmployees].joiningDate);
+    scanf(" %s", employees[*numEmployees].joiningDate);
 
     (*numEmployees)++;
     printf("Employee record added.\n");
