@@ -152,7 +152,7 @@ void searchEmployee(struct Employee *employees, int numEmployees) {
     } else if (choice == 2) {
         char name[50];
         printf("Enter employee name: ");
-        scanf(" %[^\n]", name);
+        scanf(" %s", name);
 
         for (i = 0; i < numEmployees; i++) {
             if (strcmp(name, employees[i].name) == 0) {
