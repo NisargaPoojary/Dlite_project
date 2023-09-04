@@ -1,0 +1,267 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Food {
+    char name[50];
+    float price;
+};
+
+struct Customer {
+    char name[50];
+    char address[100];
+    char phone[15];
+    struct Food orderedFood;
+    int quantity;
+};
+
+struct Employee {
+    char name[50];
+    char address[100];
+    char phone[15];
+    char department[50];
+    char dob[15];
+    char joiningDate[15];
+};
+void cls();
+int i;
+void orderFood(struct Customer *customer) {
+    struct Food foodMenu[8];
+    strcpy(foodMenu[0].name, "Pizza");
+    foodMenu[0].price = 250;
+    strcpy(foodMenu[1].name, "Burger");
+    foodMenu[1].price = 170;
+    strcpy(foodMenu[2].name, "Pasta");
+    foodMenu[2].price = 200;
+    strcpy(foodMenu[3].name, "Ice cream");
+    foodMenu[3].price = 100;
+    strcpy(foodMenu[4].name, "Coffee");
+    foodMenu[4].price = 100;
+    strcpy(foodMenu[5].name, "Pancakes");
+    foodMenu[5].price = 250;
+    strcpy(foodMenu[6].name, "Sandwich");
+    foodMenu[6].price = 120;
+    strcpy(foodMenu[7].name, "Cold drinks");
+    foodMenu[7].price = 130;
+
+    printf("Food Menu:\n");
+  	printf( "No.|    Name       |    Price   |\n");
+    printf("-----------------------------------\n");
+    for (i = 0; i < 8; i++) {
+        printf("%-4d%-20s%-9.2f\n", i + 1, foodMenu[i].name, foodMenu[i].price);
+    }
+	 printf("-----------------------------------\n");
+    int choice;
+    printf("\nEnter your choice : ");
+    scanf("%d", &choice);
+    if (choice >= 1 && choice <= 8) {
+        customer->orderedFood = foodMenu[choice - 1];
+        printf("Enter quantity: ");
+        scanf("%d", &customer->quantity);
+        printf("Enter customer name: ");
+        scanf(" %[^\n]", customer->name);
+        printf("Enter customer address: ");
+        scanf(" %[^\n]", customer->address);
+        printf("Enter customer phone number: ");
+        scanf(" %[^\n]", customer->phone);
+    } else {
+        printf("Invalid choice.\n");
+    }
+    printf("Oder Successfull!!\n");
+    sleep(3);
+    cls();
+}
+
+void addEmployee(struct Employee *employees, int *numEmployees) {
+	cls();
+    printf("Enter employee name: ");
+    scanf(" %[^\n]", employees[*numEmployees].name);
+    printf("Enter employee address: ");
+    scanf(" %[^\n]", employees[*numEmployees].address);
+    printf("Enter employee phone number: ");
+    scanf(" %[^\n]", employees[*numEmployees].phone);
+    printf("Enter employee department: ");
+    scanf(" %[^\n]", employees[*numEmployees].department);
+    printf("Enter employee date of birth: ");
+    scanf(" %[^\n]", employees[*numEmployees].dob);
+    printf("Enter employee joining date: ");
+    scanf(" %[^\n]", employees[*numEmployees].joiningDate);
+
+    (*numEmployees)++;
+    printf("Employee record added.\n");
+     sleep(3);
+     cls();
+}
+
+void viewLastOrders(struct Customer *customers, int numCustomers) {
+	cls();
+    if (numCustomers > 0) {
+        printf("Last orders:\n");
+        for (i = numCustomers - 1; i >= 0 && i >= numCustomers - 3; i--) {
+            printf("Customer: %s\n", customers[i].name);
+            printf("Ordered Food: %s\n", customers[i].orderedFood.name);
+            printf("Quantity: %d\n", customers[i].quantity);
+            printf("Total Price: %.2f\n", customers[i].orderedFood.price * customers[i].quantity);
+            printf("Address: %s\n", customers[i].address);
+            printf("Phone: %s\n", customers[i].phone);
+        }
+    } else {
+        printf("No orders available.\n");
+    }
+    sleep(3);
+         cls();
+}
+
+void viewAllEmployees(struct Employee *employees, int numEmployees) {
+	cls();
+    if (numEmployees >0){
+    	printf("Employee records:\n");
+    	for (i = 0; i < numEmployees; i++) {
+        printf("\nEmployee Name: %s\n", employees[i].name);
+        printf("Department: %s\n", employees[i].department);
+        printf("Phone: %s\n", employees[i].phone);
+      }
+  }
+     else {
+    		printf("No employees found.\n");
+    }
+    sleep(3);
+    	cls();
+}
+
+void searchEmployee(struct Employee *employees, int numEmployees) {
+	cls();
+    int choice;
+    printf("Search employee by:\n");
+    printf("1. ID\n");
+    printf("2. Name\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    if (choice == 1) {
+        int id;
+        printf("Enter employee ID: ");
+        scanf("%d", &id);
+        if (id >= 1 && id <= numEmployees) {
+            printf("Employee Name: %s\n", employees[id - 1].name);
+            printf("Department: %s\n", employees[id - 1].department);
+            printf("Phone: %s\n", employees[id - 1].phone);
+        } else {
+            printf("Invalid ID.\n");
+        }
+    } else if (choice == 2) {
+        char name[50];
+        printf("Enter employee name: ");
+        scanf(" %[^\n]", name);
+
+        for (i = 0; i < numEmployees; i++) {
+            if (strcmp(name, employees[i].name) == 0) {
+                printf("Employee Name: %s\n", employees[i].name);
+                printf("Department: %s\n", employees[i].department);
+                printf("Phone: %s\n", employees[i].phone);
+                break;
+            }
+        }
+    } else {
+        printf("Invalid choice.\n");
+    }
+     sleep(3);
+    	cls();
+}
+
+void removeEmployee(struct Employee *employees, int *numEmployees) {
+	cls();
+    int id;
+    printf("Enter employee ID to remove: ");
+    scanf("%d", &id);
+
+    if (id >= 1 && id <= *numEmployees) {
+        for (i = id - 1; i < *numEmployees - 1; i++) {
+            employees[i] = employees[i + 1];
+        }
+        (*numEmployees)--;
+        printf("Employee record removed.\n");
+    } else {
+        printf("Invalid ID.\n");
+    }
+     sleep(3);
+    	cls();
+}
+
+int main() {
+    	printf("\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\tFOOD ORDER MANAGEMENT SYSTEM ");
+	sleep(2);
+	cls();
+    struct Customer customers[10];
+    int numCustomers = 0;
+    struct Employee employees[10];
+    int numEmployees = 0;
+
+    int choice;
+    do {
+    	cls();
+        printf("1. Order Food\n");
+        printf("2. Admin Section\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        cls();
+        int adminChoice;
+        switch (choice) {
+            case 1:
+                orderFood(&customers[numCustomers]);
+                numCustomers++;
+                break;
+            case 2:
+              
+                do {
+                	cls();
+                    printf("\nAdmin Section\n");
+                    printf("1. Add Employee Records\n");
+                    printf("2. View Last Orders\n");
+                    printf("3. View All Employee Records\n");
+                    printf("4. Search Employee\n");
+                    printf("5. Remove Employee Records\n");
+                    printf("6. Back to Main Menu\n");
+                    printf("Enter your choice: ");
+                    scanf("%d", &adminChoice);
+					
+                    switch (adminChoice) {
+                        case 1:
+                            addEmployee(employees, &numEmployees);
+                            break;
+                        case 2:
+                            viewLastOrders(customers, numCustomers);
+                            break;
+                        case 3:
+                            viewAllEmployees(employees, numEmployees);
+                            break;
+                        case 4:
+                            searchEmployee(employees, numEmployees);
+                            break;
+                        case 5:
+                            removeEmployee(employees, &numEmployees);
+                            break;
+                        case 6:
+                            break;
+                        default:
+                            printf("Invalid choice.\n");
+                            break;
+                    }
+                } while (adminChoice != 6);
+                break;
+            case 3:
+                printf("Exiting...\n");
+                break;
+            default:
+                printf("Invalid choice.\n");
+                break;
+        }
+    } while (choice != 3);
+
+    return 0;
+}
+void cls(){
+
+system("cls");
+}
