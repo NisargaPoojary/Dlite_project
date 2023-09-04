@@ -81,7 +81,7 @@ void addEmployee(struct Employee *employees, int *numEmployees) {
     printf("Enter employee phone number: ");
     scanf(" %s", employees[*numEmployees].phone);
     printf("Enter employee department: ");
-    scanf(" %s", employees[*numEmployees].department);
+    scanf(" %[^\n]", employees[*numEmployees].department);
     printf("Enter employee date of birth: ");
     scanf(" %s", employees[*numEmployees].dob);
     printf("Enter employee joining date: ");
