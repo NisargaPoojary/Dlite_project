@@ -83,9 +83,9 @@ void addEmployee(struct Employee *employees, int *numEmployees) {
     printf("Enter employee department: ");
     scanf(" %s", employees[*numEmployees].department);
     printf("Enter employee date of birth: ");
-    scanf(" %s\n", employees[*numEmployees].dob);
+    scanf(" %s", employees[*numEmployees].dob);
     printf("Enter employee joining date: ");
-    scanf(" %s\n", employees[*numEmployees].joiningDate);
+    scanf(" %s", employees[*numEmployees].joiningDate);
 
     (*numEmployees)++;
     printf("Employee record added.\n");
